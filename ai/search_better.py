@@ -38,7 +38,7 @@ class Search():
             #print("find : ", self.bm.find(board, self._game))
             if len(legals) != 0:
                 # for coord in legals:
-                for coord in self.bm.find(board, self._game):
+                for coord in self.bm.find(board):
                     tmp_board = copy.deepcopy(board)
                     tmp_board.put_stone(int(coord[0]), int(coord[1]), atk)
                     score = self.alpha_beta(tmp_board, self._opponent, alpha, beta, depth-1)
@@ -46,7 +46,6 @@ class Search():
                         alpha = score
                         if depth==self._depth:
                             self._index = coord
-                    if depth==self._depth:
                     #beta cut
                     if alpha >= beta:
                         break
@@ -59,7 +58,7 @@ class Search():
             legals = board.get_puttable_list()
             if len(legals) != 0:
                 # for coord in legals:
-                for coord in self.bm.find(board, self._game):
+                for coord in self.bm.find(board):
                     tmp_board = copy.deepcopy(board)
                     tmp_board.put_stone(int(coord[0]), int(coord[1]), self._opponent)
                     score = self.alpha_beta(tmp_board, self._own, alpha, beta, depth-1)

@@ -16,7 +16,7 @@ class AiUser(BaseUser):
         opp = board.get_opponent(atk)
         game = kwargs['game']
         tmp_board = copy.deepcopy(board)
-        search = Search(board, atk, opp, game.get_turn())
+        search = Search(board, atk, opp, game.get_turn(), game)
         evaluation, x, y = search.search()
         game.game_process(None, int(x), int(y), atk)
 
